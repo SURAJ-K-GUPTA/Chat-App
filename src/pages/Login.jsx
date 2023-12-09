@@ -20,13 +20,13 @@ const Login = () => {
     draggable: true,
     theme: "dark",
   };
+  
    useEffect(()=>{
     if(localStorage.getItem("chat-app-user")){
         navigate('/')
     }
    },[])
   const handleSubmit = async (event) => {
-    alert('hi')
     event.preventDefault();
     if (handleValidation()) {
       const { password, username } = values;
@@ -39,7 +39,9 @@ const Login = () => {
       }
       if (data.status === true) {
         localStorage.setItem("chat-app-user", JSON.stringify(data.user));
-        navigate("/");
+        toast.success("Login Successfully",toastOptions)
+        setTimeout(()=>{navigate("/")},1000)
+        
       }
     }
   };
